@@ -12,11 +12,13 @@
       %dt Latitude
       %dd {{ coords.latitude }}
       %dt Horizontal Accuracy
-      %dd {{ coords.accuracy }}
+      %dd {{ coords.accuracy }}m
   #floodzone{style: 'display: none'}
     %h2 It's a:
     %p.zone_name {{ zone.name }}
     %p.zone_designation {{ zone_designation }}
+    %p.rain {{ rain_estimate }} in. of rain
+    %p.flooding Flooding? {{ flooding }}
   %h2 About
   #meta
     #nobueno{style: 'display: none'}
