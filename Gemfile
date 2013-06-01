@@ -7,7 +7,7 @@ gem 'rails', '4.0.0.beta1'
 gem 'activerecord-postgis-adapter'
 gem 'pg'
 
-# Use SCSS for stylesheets
+gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.0.rc1'
 
 # Use Uglifier as compressor for JavaScript assets
