@@ -1,26 +1,50 @@
 jQuery ($)->
   return unless $('#floodfinder').length > 0
 
-  success =(position)->
-    $('#spinnaz').hide()
-    $('#privacy').hide()
-    localgeo = $('#localgeo')
-    localgeo.html(Mustache.render localgeo.html(), position)
-    localgeo.show()
-    
-  error =(msg)->
-    if (typeof msg == 'string')
-      message = msg
-    else
-      message = "Unknown error."
+  spin = {}
+  (->
+    spinnaz = $('#spinnaz')
+    spin.ride = ->
+      spinnaz.show()
+    spin.stop = ->
+      spinnaz.hide()
+    )()
 
-    $('#nobueno').text(message).show()
-    $('body').addClass('error')
+  t =(el, obj)->
+    el.html(Mustache.render el.html(), obj)
+
+  ajax =
+    success: (data, status, jqx)->
+      floodzone = $('#floodzone')
+      t floodzone, data
+      floodzone.show()
+      spin.stop()
+
+  geo = 
+    success: (position)->
+      spin.stop()
+      $('#privacy').hide()
+      localgeo = $('#localgeo')
+      t localgeo, position
+      localgeo.show()
+      spin.ride()
+      $.ajax
+        url: '/find'
+        dataType: 'json'
+        data: position.coords
+        success: ajax.success
+    error: (msg)->
+      if (typeof msg == 'string')
+        message = msg
+      else
+        message = "Unknown error."
+      $('#nobueno').text(message).show()
+      $('body').addClass('error')
 
   if !navigator.geolocation
     $('#nobueno').show()
     $('body').addClass('sample')
-    return success(sample)
+    # return geo.success(sample)
 
-  $('#spinnaz').show()
-  navigator.geolocation.getCurrentPosition(success, error)
+  spin.ride
+  navigator.geolocation.getCurrentPosition(geo.success, geo.error)

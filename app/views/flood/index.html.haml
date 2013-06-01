@@ -4,17 +4,19 @@
     This application uses geolocation; it sends your coordinates to
     a central service, where they may be logged and tracked. If you
     do not want this, click "Deny" when it asks for your location.
-  %dl#localgeo{style: 'display: none'}
-    %dt Longitude
-    %dd {{ coords.longitude }}
-    %dt Latitude
-    %dd {{ coords.latitude }}
-    %dt Horizontal Accuracy
-    %dd {{ coords.accuracy }}
-    / %dt Altitude
-    / %dd {{ coords.altitude }}
-    / %dt Altitude Accuracy
-    / %dd {{ coords.altitudeAccuracy }}
+  #localgeo{style: 'display: none'}
+    %h2 You're at:
+    %dl
+      %dt Longitude
+      %dd {{ coords.longitude }}
+      %dt Latitude
+      %dd {{ coords.latitude }}
+      %dt Horizontal Accuracy
+      %dd {{ coords.accuracy }}
+  #floodzone{style: 'display: none'}
+    %h2 It's a:
+    %p.zone_name {{ zone.name }}
+    %p.zone_designation {{ zone_designation }}
   %h2 About
   #meta
     #nobueno{style: 'display: none'}

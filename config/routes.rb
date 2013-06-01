@@ -1,5 +1,6 @@
 Flood::Application.routes.draw do
   root to: 'flood#index'
+  get '/find', to: 'flood#find', as: 'finder'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
