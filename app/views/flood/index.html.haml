@@ -4,5 +4,21 @@
     This application uses geolocation; it sends your coordinates to
     a central service, where they may be logged and tracked. If you
     do not want this, click "Deny" when it asks for your location.
+  %dl#localgeo{style: 'display: none'}
+    %dt Longitude
+    %dd {{ coords.longitude }}
+    %dt Latitude
+    %dd {{ coords.latitude }}
+    %dt Horizontal Accuracy
+    %dd {{ coords.accuracy }}
+    / %dt Altitude
+    / %dd {{ coords.altitude }}
+    / %dt Altitude Accuracy
+    / %dd {{ coords.altitudeAccuracy }}
   %h2 About
   #meta
+    #nobueno{style: 'display: none'}
+      Couldn't activate geolocation.
+      %strong USING SAMPLE DATA
+  #spinnaz{style: 'display: none'}
+    ridin' spinnaz
