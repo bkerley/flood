@@ -11,6 +11,13 @@ jQuery ($)->
     )()
 
   t =(el, obj)->
+    obj.round = ->
+      (text, render)->
+        Number(render(text)).toPrecision(3)
+    obj.biground = ->
+      (text, render)->
+        Number(render(text)).toPrecision(6)
+
     el.html(Mustache.render el.html(), obj)
 
   ajax =

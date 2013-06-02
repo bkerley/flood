@@ -1,0 +1,63 @@
+body
+  background: black
+  margin: 0
+  padding: 0
+  font-family: 'Source Sans Pro', Helvetica, sans-serif
+  text-align: center
+  color: white
+
+#localgeo, #about
+  text-align: left
+
+#abovefold
+  background: -webkit-linear-gradient(top, #535460 0%,#326984 100%)
+  background: linear-gradient(bottom, #535460 0%,#326984 50%,#104c0c 51%,#9e9971 100%)  
+  margin-bottom: 0
+  padding: 20px
+
+#belowfold
+  background: -webkit-linear-gradient(top, #104c0c 0%,#9e9971 100%)
+  background: linear-gradient(bottom, #104c0c 0%,#9e9971 100%)  
+  margin-top: 0
+  padding: 20px
+
+h1
+  @include rotate(2deg)
+  font-size: 44px
+  font-weight: 900
+  margin: 0
+  color: #a5deff
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(#75aeba, 1)), color-stop(0.25, rgba(#2a557a, 1)), color-stop(1, rgba(0,0,0,0)))
+  // mask-image: linear-gradient(to bottom, #75aeba 0%,#2a557a 25%,#000000 100%)
+
+h2.flooding
+  margin-top: -20px
+  margin-bottom: 0
+  font-weight: 900
+  font-size: 64px
+
+h3
+  margin-bottom: 0
+
+p
+  margin: 4px
+
+dl
+  margin: 0
+  width: 300px
+  padding: 0
+  dt, dd
+    display: inline-block
+    width: 140px
+    margin: 0
+    padding: 0
+  dt
+    text-align: right
+    margin-right: 10px
+  dd
+    text-align: left
+
+a:link, a:visited
+  color: #ddf
+  text-decoration: none
+  font-weight: 300
