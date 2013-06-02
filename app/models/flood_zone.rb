@@ -3,10 +3,6 @@ class FloodZone
     get_at_coordinates lat, long, 'femafloodzone_lyr'
   end
 
-  def self.get_elevation_at_coordinates(lat, long)
-    get_at_coordinates lat, long, 'countyfloodcriteria_lyr'
-  end
-
   private
   def self.get_at_coordinates(lat, long, table)
     escaped_lat = Float(lat).to_s
