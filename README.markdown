@@ -56,7 +56,7 @@ flood zone data, however, is not. The application expects it to be
 provided as polygon data in the `femafloodzone_lyr` table, and 
 queryable as such:
 
-``sql
+```sql
 SELECT ogc_fid, name
 FROM femafloodzone_lyr
 WHERE 
