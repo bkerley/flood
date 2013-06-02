@@ -20,6 +20,19 @@ jQuery ($)->
 
     el.html(Mustache.render el.html(), obj)
 
+  map = (lat, long)->
+    joined_latlong = [lat,long].join(',')
+    params =
+      api_key: 'AIzaSyCnp7JMG9xi9leGcwd1LllubYEB5x00UlY'
+      center: joined_latlong
+      zoom: 14
+      size: "200x200"
+      sensor: "true"
+      markers: joined_latlong
+    encoded_params = jQuery.param params
+    url = "https://maps.google.com/maps/api/staticmap?#{encoded_params}"
+    "<img src='#{url}' width='100' height='100' />"
+
   ajax =
     success: (data, status, jqx)->
       floodzone = $('#floodzone')
@@ -32,6 +45,7 @@ jQuery ($)->
       spin.stop()
       $('#privacy').hide()
       localgeo = $('#localgeo')
+      position.map_tag = map(position.coords.latitude, position.coords.longitude)
       t localgeo, position
       localgeo.show()
       spin.ride()

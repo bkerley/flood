@@ -22,13 +22,14 @@
         %span.zone_designation {{ zone_designation }}
   #belowfold
     #localgeo{style: 'display: none'}
+      #map {{{ map_tag }}}
       %h3 You're at:
       %dl
         %dt Longitude
         %dd {{#biground}}{{ coords.longitude }}{{/biground}}
         %dt Latitude
         %dd {{#biground}}{{ coords.latitude }}{{/biground}}
-        %dt Horizontal Accuracy
+        %dt Accuracy
         %dd {{ coords.accuracy }}m
     #about
       %h3 About:

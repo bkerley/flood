@@ -18,7 +18,7 @@ class FloodController < ApplicationController
         zone_designation: zone_designation,
         rain_measures: rain_measures,
         rain_estimate: rain_estimate, 
-        flooding: flooding,
+        flooding: flooding
         }}
     end
   end
