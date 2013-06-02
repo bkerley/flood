@@ -1,28 +1,59 @@
-%h1 Where's the Flood?
 #floodfinder
-  %p#privacy
-    This application uses geolocation; it sends your coordinates to
-    a central service, where they may be logged and tracked. If you
-    do not want this, click "Deny" when it asks for your location.
-  #localgeo{style: 'display: none'}
-    %h2 You're at:
-    %dl
-      %dt Longitude
-      %dd {{ coords.longitude }}
-      %dt Latitude
-      %dd {{ coords.latitude }}
-      %dt Horizontal Accuracy
-      %dd {{ coords.accuracy }}m
-  #floodzone{style: 'display: none'}
-    %h2 It's a:
-    %p.zone_name {{ zone.name }}
-    %p.zone_designation {{ zone_designation }}
-    %p.rain {{ rain_estimate }} in. of rain
-    %p.flooding Flooding? {{ flooding }}
-  %h2 About
-  #meta
-    #nobueno{style: 'display: none'}
-      Couldn't activate geolocation.
-      %strong USING SAMPLE DATA
-  #spinnaz{style: 'display: none'}
-    ridin' spinnaz
+  #abovefold
+    %h1 Is it flooding?
+    %p#privacy
+      This application uses geolocation; it sends your coordinates to
+      a central service, where they may be logged and tracked. If you
+      do not want this, click "Deny" when it asks for your location.
+    #floodzone{style: 'display: none'}
+      %h2.flooding
+        {{#flooding}} Yes {{/flooding}}
+        {{^flooding}} No {{/flooding}}
+      %p.desc
+        {{#flooding}} It's probably flooding. {{/flooding}}
+        {{^flooding}} It's probably not flooding. {{/flooding}}
+      %p.rain 
+        {{^flooding}} Only {{/flooding}}
+        {{#round}}{{ rain_estimate }}{{/round}} in. of rain today.
+      %h3 FEMA Information
+      %p.fema
+        FEMA flood zone
+        %span.zone_name< {{ zone.name }}:
+        %span.zone_designation {{ zone_designation }}
+  #belowfold
+    #localgeo{style: 'display: none'}
+      %h3 You're at:
+      %dl
+        %dt Longitude
+        %dd {{#biground}}{{ coords.longitude }}{{/biground}}
+        %dt Latitude
+        %dd {{#biground}}{{ coords.latitude }}{{/biground}}
+        %dt Horizontal Accuracy
+        %dd {{ coords.accuracy }}m
+    #about
+      %h3 About:
+      %p
+        Where's the Flood was made at Hack For Change: Miami, 
+        the weekend of June 1-2, 2013 in Miami.
+        Source code is available on 
+        = link_to 'GitHub.', 'https://github.com/bkerley/flood/'
+
+      %h3 Data Sources
+      %ul
+        %li
+          Rainfall data from the
+          = link_to 'http://water.weather.gov/precip/download.php' do
+            Advanced Hydrologic Prediction Service
+          part of the National Weather Service.
+        %li
+          FEMA Flood Zone data from 
+          = link_to 'http://gisweb.miamidade.gov/GISSelfServices/GeographicData/MDGeographicData.html' do
+            Miami-Dade County GIS.
+          = link_to 'http://gisweb.miamidade.gov/GISSelfServices/Data/HTML/FEMAFloodZone.htm' do
+            Flood Zone Metadata is available.
+    #meta
+      #nobueno{style: 'display: none'}
+        Couldn't activate geolocation.
+        %strong USING SAMPLE DATA
+    #spinnaz{style: 'display: none'}
+      ridin' spinnaz
