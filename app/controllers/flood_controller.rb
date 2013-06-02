@@ -5,11 +5,11 @@ class FloodController < ApplicationController
   def find
     loc = {lat: params[:latitude], long: params[:longitude]}
     zone = FloodZone.get_zone_at_coordinates loc[:lat], loc[:long]
-    zone_designation = FloodDesignation[zone['name']]
+    zone_designation = FloodDesignation[zone['name']] rescue nil
     rain_measures = Rainfall.measurements_near loc[:lat], loc[:long]
     rain_estimate = Rainfall.unweight rain_measures
 
-    flooding = rain_estimate > 1
+    flooding = rain_estimate > 1 rescue nil
 
     respond_to do |f|
       f.json { render json: {
