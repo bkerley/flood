@@ -39,7 +39,7 @@ class Rainfall
       FROM nws_precip_1day_observed_20130601 
       ORDER BY 
         #{dist_calculation} ASC
-      LIMIT 5;
+      LIMIT 9;
     SQL
 
     measurements = ActiveRecord::Base.connection.
