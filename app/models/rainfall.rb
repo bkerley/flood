@@ -10,6 +10,7 @@ class Rainfall
   end
 
   def self.unweight(coll)
+    return 0 if coll.length == 0
     all_inverse_distance = coll.map(&:inverse_distance).inject(:+)
     all_amount = coll.map(&:weighted_amount).inject(:+)
 
@@ -21,12 +22,12 @@ class Rainfall
   end
 
   def self.measurements_near(lat, long)
-    escaped_lat = Float(lat).to_s
-    escaped_long = Float(long).to_s
+    lat = Float(lat)
+    long = Float(long)
     dist_calculation = <<-SQL
       ST_Distance(wkb_geometry, 
             ST_PointFromText(
-              'POINT(#{escaped_long} #{escaped_lat})',
+              'POINT(#{long} #{lat})',
                900914))
     SQL
     query = <<-SQL
@@ -37,6 +38,9 @@ class Rainfall
         globvalue, 
         units 
       FROM nws_precip_1day_observed_20130601 
+      WHERE
+        lat > #{lat - 1} AND lat < #{lat + 1} AND
+        lon > #{long - 1} AND lon < #{long + 1}
       ORDER BY 
         #{dist_calculation} ASC
       LIMIT 9;
